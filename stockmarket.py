@@ -4,27 +4,14 @@ def find_longest_non_decreasing_subsequence(prices):
     n = len(prices)
     dp = [1] * n
     prev = [-1] * n
-
-    print(prices)
     
-    for i in range(1, n):
-        for j in range(i):
-            if prices[i] >= prices[j] and dp[i] < dp[j] + 1:
-                dp[i] = dp[j] + 1
-                prev[i] = j
+    
+    
+    
+    
+    
 
-    max_length = max(dp)
-    max_index = dp.index(max_length)
-
-    subsequence = []
-    while max_index != -1:
-        subsequence.append(prices[max_index])
-        max_index = prev[max_index]
-        
-    print(max_length)
-    print(subsequence)
-
-    return max_length, subsequence[::-1]
+    return #index ? 
 
 
 def main(infile, outfile):
