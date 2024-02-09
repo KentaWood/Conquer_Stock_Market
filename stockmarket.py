@@ -30,7 +30,14 @@ def find_longest_non_decreasing_subsequence(prices):
                 mid_streak += 1
                 j += 1
 
-        return max(left_length, mid_streak, right_length), 
+        # Determine the longest length and its corresponding subsequence
+        max_length = max(left_length, mid_streak, right_length)
+        if max_length == left_length:
+            return max_length, left_subsequence
+        elif max_length == mid_streak:
+            return max_length, prices[i+1:j]
+        else:
+            return max_length, right_subsequence
     
     return helper(prices)
 
