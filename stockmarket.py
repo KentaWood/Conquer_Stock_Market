@@ -1,3 +1,4 @@
+from re import sub
 import sys
 
 def find_longest_non_decreasing_subsequence(prices):
@@ -33,26 +34,37 @@ def find_longest_non_decreasing_subsequence(prices):
         # Determine the longest length and its corresponding subsequence
         max_length = max(left_length, mid_streak, right_length)
         if max_length == left_length:
-            return max_length, left_subsequence
+            return len(left_subsequence), left_subsequence
         elif max_length == mid_streak:
-            return max_length, prices[i+1:j]
+            return len(prices[i+1:j]), prices[i+1:j]
         else:
-            return max_length, right_subsequence
+            return len(right_subsequence), right_subsequence
     
     return helper(prices)
+
+def find_first_index(main_array, sub_array):
+    return main_array.index(sub_array[0]) + 1
 
 def main(infile, outfile):
     with open(infile, 'r') as f:
         days = int(f.readline().strip())
         prices = [int(f.readline().strip()) for _ in range(days)]
 
+    
     length, subsequence = find_longest_non_decreasing_subsequence(prices)
+    index = find_first_index(prices, subsequence)
+    
+    print(length)
+    print(index)
+    print(subsequence)
+    
 
     with open(outfile, 'w') as f:
         f.write(str(length) + '\n')
-        f.write(str(subsequence[0]) + '\n')
+        f.write(str(index) + '\n')
         for price in subsequence:
             f.write(str(price) + '\n')
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
