@@ -43,7 +43,9 @@ def find_longest_non_decreasing_subsequence(prices):
     return helper(prices)
 
 def find_first_index(main_array, sub_array):
-    return main_array.index(sub_array[0]) + 1
+    for i in range(len(main_array)):
+        if main_array[i:i+len(sub_array)] == sub_array:
+            return i + 1
 
 def main(infile, outfile):
     with open(infile, 'r') as f:
